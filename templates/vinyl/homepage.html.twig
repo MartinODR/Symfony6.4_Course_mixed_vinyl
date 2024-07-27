@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create a New Record | {{ parent() }}{% endblock %} {# parent() encuentra el template pariente y lo imprime #}
+
+{% block body %}
+<div>
+    VinylController.php -> class VinylController ->#[Route('/')] public function homepage() -> homepage.html.twig
+</div>
+
+<h1>{{ title }}</h1>
+
+{# TODO: add an image of the record #}
+
+<div>
+    Tracks:
+
+    <ul>
+        {% for track in tracks %}
+            <li>
+                {{ track.song }} - {{ track.artists }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

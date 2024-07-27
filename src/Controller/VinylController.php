@@ -2,16 +2,29 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;   //symfony Library gives librarys for Request, Response and Session.
 use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\String\u;
 
-class VinylController
+class VinylController extends AbstractController
 {
     #[Route('/')]
     public function homepage(): Response //response it's just to specify the kind of function it doesn't have effect
     {
-        return new Response('Title: Starting new ways first Method homepage("/")');  //response related to HttpFoundation
+        $tracks = [
+            ['song' => 'Gangsta\'s Paradise', 'artists' => 'Coolio'],
+            ['song' => 'Waterfalls', 'artists' =>  'TLC'],
+            ['song' => 'Creep',  'artists' =>  'Radiohead'],
+            ['song' => 'Kiss from a Rose', 'artists' => 'Seal'],
+            ['song' => 'On Bended Knee', 'artists' => 'Boyz II Men'],
+            ['song' => 'Fantasy', 'artists' => 'Mariah Carey'],
+        ];
+       // return new Response('Title: Starting new ways first Method homepage("/")');  //response related to HttpFoundation
+        return $this->render('vinyl/homepage.html.twig', [
+            'title' => 'PB & Jams',
+            'tracks' => $tracks,
+        ]);
     }
 
     #[Route('/browse/{slug}')]  //{slug} it's a Wildcard can be another word it#s make no difference// can match anything but by default a wild card is required, must be an adress after /browse
